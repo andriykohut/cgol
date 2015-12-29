@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import argparse
 import curses
 import itertools
 import random
@@ -8,6 +9,10 @@ from io import StringIO
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-p', '--population', type=int, dest='population')
+    parser.add_argument('-s', '--step-duration', type=float, default=0.1, dest='step')
+    args = parser.parse_args()
     try:
         stdscr = curses.initscr()
         # Properly initialize the screen
@@ -20,7 +25,8 @@ def main():
         stdscr.noutrefresh()
         curses.doupdate()
         grid = init_grid(curses.LINES-1, curses.COLS//2-1)
-        randomly_populate_grid(grid, curses.LINES * curses.COLS // 15)
+        population = args.population if args.population else curses.LINES * curses.COLS // 15
+        randomly_populate_grid(grid, population)
         while True:
             window.clear()
             gridio = grid_view(grid)
@@ -28,7 +34,7 @@ def main():
             window.refresh()
             window.clear()
             step(grid)
-            time.sleep(0.1)
+            time.sleep(args.step)
             stdscr.noutrefresh()
             window.noutrefresh()
             curses.doupdate()
