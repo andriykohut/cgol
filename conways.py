@@ -81,7 +81,7 @@ def neighbour_idx(grid, row, col):
     w = len(grid[0]) - 1
     h = len(grid) - 1
     product = itertools.product((row-1, row, row+1), (col-1, col, col+1))
-    idxs = set((r, c) for (r, c) in product if r <= h and c <= w)
+    idxs = set((r, c) for (r, c) in product if ((0 <= r <= h) and (0 <= c <= w)))
     idxs.remove((row, col))
     return idxs
 
