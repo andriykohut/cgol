@@ -1,8 +1,7 @@
 # cgol
-curses game of life
+[curses](https://docs.python.org/3/howto/curses.html) game of life
 ```sh
-curl https://raw.githubusercontent.com/andriykohut/cgol/master/conways.py
-./conways.py
+curl https://raw.githubusercontent.com/andriykohut/cgol/master/conways.py | python
 ```
 
 ```
